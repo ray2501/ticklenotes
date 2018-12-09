@@ -1,0 +1,40 @@
+<?
+#    source "db/tdbcnoteservices.tcl"
+    source "db/dionoteservices.tcl"
+?>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>tnotes</title>
+        <link rel="stylesheet" href="css/pure-min.css">
+</head>
+<body>
+<?
+    if { [::rivet::var exists id] } {
+        set id [::rivet::var get id]
+
+        set result [getNote $id]
+        set fresult [lindex $result 0] 
+        set title [lindex $fresult 1]
+        set body [lindex $fresult 2]
+    }
+?>
+<h1>Edit Note - <?= $id ?></h1>
+<form  class="pure-form" action="handler/UpdateNote.rvt" method="post">
+    <input name="id" value="<?= $id ?>" type="hidden" />
+    <div>
+        <label name="title">Title</label>
+        <div>
+            <input name="title" value="<?= $title ?>" />
+        </div>
+        <label name="body">Body</label>
+        <div><textarea rows="5" cols="70" name="body"><?= $body ?></textarea></div>
+    </div>
+    <br>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+</body>
+</html>

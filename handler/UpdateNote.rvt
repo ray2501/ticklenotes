@@ -1,0 +1,17 @@
+<?
+# 
+# Handler for EditNote.html
+#
+#    source "../db/tdbcnoteservices.tcl"
+    source "../db/dionoteservices.tcl"
+
+    if { [::rivet::var exists id] && [::rivet::var exists title] && [::rivet::var exists body]} {
+        set id [::rivet::var get id]
+        set title [::rivet::var get title]
+        set body [::rivet::var get body]
+
+        updateNote $id $title $body 
+    }
+
+    ::rivet::redirect ../index.rvt
+?>

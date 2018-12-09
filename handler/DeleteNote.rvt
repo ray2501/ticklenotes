@@ -1,0 +1,14 @@
+<?
+#
+# Handler for delete note
+#
+#    source "../db/tdbcnoteservices.tcl"
+    source "../db/dionoteservices.tcl"
+
+    if { [::rivet::var exists id] } {
+        set id [::rivet::var get id]
+        deleteNote $id
+    }
+
+    ::rivet::redirect ../index.rvt
+?>

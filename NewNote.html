@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Add a new note</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/pure-min.css">
+</head>
+<body>
+<h1>Add a new note</h1>
+<p>
+    Enter Title and Body.
+</p>
+<form class="pure-form" action="handler/AddNote.rvt" method="POST">
+    <label>Title</label>
+    <div><input name="title" /></div>
+    <label>Body</label>
+    <div><textarea rows="5" cols="70" name="body"></textarea></div>
+    <br>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

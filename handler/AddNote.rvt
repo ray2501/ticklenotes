@@ -1,0 +1,16 @@
+<?
+#
+# Handler for NewNote.html
+#
+#    source "../db/tdbcnoteservices.tcl"
+    source "../db/dionoteservices.tcl"
+
+    if { [::rivet::var exists title] && [::rivet::var exists body]} {
+        set title [::rivet::var get title]
+        set body [::rivet::var get body]
+
+        addNote $title $body
+    }
+
+    ::rivet::redirect ../index.rvt
+?>

@@ -1,0 +1,65 @@
+<? 
+#
+# index.rvt - the index page
+#
+
+#    source "db/tdbcnoteservices.tcl"
+    source "db/dionoteservices.tcl"
+?>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>tnotes</title>
+	<link rel="stylesheet" href="css/pure-min.css">
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">tnotes</h1>
+<br>
+<div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-1-5"></div>
+        <div class="pure-u-1-5"></div>
+    <div class="pure-u-1-5">
+    <button class="pure-button pure-button-primary" onclick="javascript:location.href='NewNote.html'">New</button>
+    </div>
+    <div class="pure-u-1-5"></div>
+</div>
+<hr>
+<table class="pure-table pure-table-bordered" width="99%">
+    <thead>
+        <tr>
+            <th width="22%">Id</th>
+            <th width="20%">Title</th>
+            <th width="31%">Body</th>
+            <th width="17%">Created</th>
+            <th width="5%">Update</th>
+            <th width="5%">Remove</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <? set result [getAllNotes]
+        foreach r $result {
+          foreach {id title body created} $r {
+            puts "<tr>
+                <td>$id</td>
+                <td>$title</td>
+                <td>$body</td>
+                <td>$created</td>
+                <td><form action=\"EditNote.rvt\" method=\"put\">
+                <input type=\"hidden\" name=\"id\" value=\"$id\">
+                <input class=\"pure-button\" type=\"submit\" value=\"Update\">
+                </form></td>
+                <td><form action=\"handler/DeleteNote.rvt\" method=\"delete\">
+                <input type=\"hidden\" name=\"id\" value=\"$id\">
+                <input class=\"pure-button\" type=\"submit\" value=\"Delete\">
+                </form></td>
+            </tr>"
+          }
+        }
+        ?>
+    </tbody>
+</table>
+</body>
+</html>
